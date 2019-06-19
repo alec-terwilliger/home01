@@ -1,0 +1,44 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package TextAdventure;
+
+/**
+ *
+ * @author alec.terwilliger
+ */
+public class TextAdventure {
+
+    public static void main(String[] args) {
+
+        // Starting Room (Dorm Room) 
+        Exit exit1 = new Exit("Hallway", "An exit to the hallway", "You exit your room into the hallway");
+        Item dormKey = new Item("Dorm Key", "A key to get back into your dorm");
+        Room startingRoom = new Room("Dorm Room", "You awake to find yourself lost and confused in your dorm room", exit1, dormKey);
+
+        Exit exit2 = new Exit("Dorm Room", "A door that leads back to your dorm", "You enter your dorm room");
+        Exit exit5 = new Exit("Janitor Closet", "An old moldy door that seems to be missing one of its hinges", "The door creaks as you pull it open and you step inside");
+        Exit exit7 = new Exit("Stairs", "Black steps that lead down to the first floor", "You walk down the steps to the first floor");
+        
+        // Room 2 (Hallway)
+        Exit exit3 = new Exit("Bathroom", "A door that leads to the bathroom", "You upen the door to the bathroom");
+        Room hallway = new Room("Hallway", "A long narrow corridor, You seem to be alone here", exit2, exit3, exit5, exit7);
+
+        // Room 3 (Bathroom)
+        Creature student = new Creature("Student", "The student is in the shower singing an odd rendition of Katy Perry's \'Roar\' ", null);
+        Exit exit4 = new Exit("Hallway", "A door that leads back to the hallway", "You open the door to the hallway");
+        Room bathroom = new Room("Bathroom", "The boys bathroom, nothing too exciting here", exit4, student);
+
+        //Room 4 (Janitor's Closet)
+        Exit exit6 = new Exit("Hallway", "The door is still old and moldy", "This time you use your foot to poke open the moldy and decrepit door");
+        Item broom = new Item("Broom", "An old broom that has a light coat of dust spread evenly over the wood");
+        Room janitorsCloset = new Room("Jsnitor's Closet", "A musrty closet with a few buckets used for cleaning, a broom that looks like it hasn't been touched in years, and a faucet that leaks a drop or two of water every second", exit6, broom);
+
+        //Room 5 (Stairs
+        
+        
+    }
+
+}

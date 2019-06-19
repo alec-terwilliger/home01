@@ -1,0 +1,49 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package TextAdventure;
+
+/**
+ *
+ * @author alec.terwilliger
+ */
+public class Room {
+    // instance variables
+    private String roomName;
+    private String roomDescription;
+    private Exit exit1, exit2, exit3, exit4, secretExit;
+    private Item item;
+    private Creature creature;
+    // constructor methods
+    public Room(String roomName,String roomDescription, Exit exit1) {
+    this.roomName = roomName;
+    this.roomDescription = roomDescription;
+    this.exit1 = exit1;
+    }
+    
+    public Room(String roomName,String roomDescription, Exit exit1,
+            Exit exit2) {
+    this.roomName = roomName;
+    this.roomDescription = roomDescription;
+    this.exit1 = exit1;
+    this.exit2 = exit2;
+    }
+    
+    public Room(String roomName,String roomDescription, Exit exit1,
+            Exit exit2, Exit exit3) {
+    this.roomName = roomName;
+    this.roomDescription = roomDescription;
+    this.exit1 = exit1;
+    this.exit2 = exit2;
+    this.exit3 = exit3;
+    }
+    
+    
+    
+    
+    
+    
+    
+}

@@ -1,0 +1,111 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package TextAdventure;
+
+import javax.swing.plaf.basic.BasicPasswordFieldUI;
+
+
+/**
+ *
+ * @author alec.terwilliger
+ */
+public class TextAdventure {
+
+    public static void main(String[] args) {
+
+        Item studentID = new Item("Student ID", "The basic ID for a college student, you wonder if you should get a better picture next year");
+        
+        Exit exit1 = new Exit("Hallway", "An exit to the hallway", "You exit your room into the hallway", null, null, false);
+        Exit exit2 = new Exit("Dorm Room", "A door that leads back to your dorm", "You enter your dorm room", null, null, false);
+        Exit exit3 = new Exit("Bathroom", "A door that leads to the bathroom", "You upen the door to the bathroom", null, null, false);
+        Exit exit4 = new Exit("Hallway", "A door that leads back to the hallway", "You open the door to the hallway", null, null, false);
+        Exit exit5 = new Exit("Janitor Closet", "An old moldy door that seems to be missing one of its hinges", "The door creaks as you pull it open and you step inside", null, null, false);
+        Exit exit6 = new Exit("Hallway", "The door is still old and moldy", "This time you use your foot to poke open the moldy and decrepit door", null, null, false);
+        Exit exit7 = new Exit("Stairs", "Black steps that lead down to the first floor", "You walk down the steps to the first floor", null, null, false);
+        Exit exit8 = new Exit("Hallway", "Black steps that lead up towards your dorm", "You walk up the steps towards your dorm", null, null, false);
+        Exit exit9 = new Exit("First Floor", "A long hallway with no one in sight", "You begin walking down the hallway", null, null, false);
+        Exit exit10 = new Exit("Stairs", "You can see some steps that lead upward", "You walk toward the steps", null, null, false);
+        Exit exit11 = new Exit("Common Area", "Double glass doors that lead to a common area", "You open one of the glass doors and walk into the common area", null, null, false);
+        Exit exit11b = new Exit("First Floor", "A glass door that leads to the first floor", "You open the glass door and walk into the first floor", null, null, false);
+        Exit exit12 = new Exit("Street", "A door that leads out to the street, you should make sure you have your student ID so you can get back in", "You push the door open and walk into the world beyond", null, studentID, false);
+        Exit exit13 = new Exit("Basement", "There are stairs to your left that lead down to the basement", "You walk down the creaky old steps into the basement below", null, null, false);
+        Exit exit14 = new Exit("Study Area", "You see a room that looks like it has some chairs and desks for a quiet study area", "You open the door and go into the study area", null, null, false);
+        Exit exit15 = new Exit("First Floor", "A second staircase that leads up to the first floor", "You walk up the stairs almost bumping your head on the low hanging ceiling", null, null, false);
+        Exit exit16 = new Exit("Dining Center", "A door with and ID scanner to open it", "You use your student ID to open the door", null, null, true);
+
+        // Starting Room (Dorm Room)
+        Item dormKey = new Item("Dorm Key", "A key to get back into your dorm");
+        Room startingRoom = new Room("Dorm Room", "You awake to find yourself lost and confused in your dorm room", exit1, dormKey);
+        exit2.setRequiredItem(dormKey);
+
+        // Room 2 (Hallway)
+        Room hallway = new Room("Hallway", "A long narrow corridor, You seem to be alone here", exit2, exit3, exit5, exit7);
+
+        // Room 3 (Bathroom)
+        Creature student = new Creature("Student", "The student is in the shower singing an odd rendition of Katy Perry's \'Roar\' ", null, null);
+        Room bathroom = new Room("Bathroom", "The boys bathroom, nothing too exciting here", exit4, student);
+
+        //Room 4 (Janitor's Closet)
+        Item broom = new Item("Broom", "An old broom that has a light coat of dust spread evenly over the wood. What use could it have?");
+        Room janitorsCloset = new Room("Jsnitor's Closet", "A musty closet with a few buckets used for cleaning, a broom that looks like it hasn't been touched in years, and a faucet that leaks a drop or two of water every second", exit6, broom);
+
+        //Room 5 (Stairs)
+        Room stairs = new Room("Stairs", "A black staircase", exit8, exit9);
+
+        //Room 6 (First Floor)
+        Room firstFloor = new Room("First Floor", "A long hallway with a common area to your right, stairs that lead down to the basement, and a door that leads to the street", exit10, exit11, exit12, exit13);
+        exit12.setRequiredItem(studentID);
+
+        //Room 7 (Common Area)
+        Creature residentAssistant = new Creature("Resident Assistant", "Your RA eyes you wearily as he hunches over a stack of papers", null, null);
+        Room commonArea = new Room("Common Area", "A small room with some chairs and some desks. There are some couches for lounging as well", exit11b, residentAssistant);
+
+        //Room 8 (Basement)
+        Item rustyBucket = new Item("Rusty Bucket", "It's a rusty bucket...");
+        Room basement = new Room("Basement", "The basement level of your hall, it's kinda creepy yet pleasantly quiet. Off in the distance you hear laundry being washed as well as a study area", exit14, rustyBucket);
+
+        //Room 9
+        Room studyRoom = new Room("Study Area", "A quiet room, you realize you have studied here before. You notice a glint coming from one of the desks", exit15, studentID);
+
+        //Room 10 (Street)
+        Creature giantFly = new Creature("Giant Fly", "A giant nasty fly that blocks your path to the dining center", "You smash the giant fly with your broom and it explodes into a thousand pieces", broom);
+        Room street = new Room("Street", "A barren street with... what's that?? A giant fly blocks your path to the dining center!", exit16, exit15, giantFly);
+        exit15.setRequiredItem(studentID);
+        exit16.setCreatureBlocks(true);
+        
+        //Room 11 (Dining Center)
+        Room endingRoom = new Room("Dining Center", null, null);
+        exit16.setRequiredItem(studentID);
+                
+                
+        //Linking Exits
+        exit1.setDestination(hallway);
+        exit2.setDestination(startingRoom);
+        exit3.setDestination(bathroom);
+        exit4.setDestination(hallway);
+        exit5.setDestination(janitorsCloset);
+        exit6.setDestination(hallway);
+        exit7.setDestination(stairs);
+        exit8.setDestination(hallway);
+        exit9.setDestination(firstFloor);
+        exit10.setDestination(stairs);
+        exit11.setDestination(commonArea);
+        exit11b.setDestination(firstFloor);
+        exit12.setDestination(street);
+        exit13.setDestination(basement);
+        exit14.setDestination(studyRoom);
+        exit15.setDestination(firstFloor);
+        exit16.setDestination(endingRoom);
+        
+        World ndsu = new World(startingRoom, endingRoom);
+        Player player = new Player("Alec", "A very strong, very smart computer science major");
+        Game myGame = new Game(ndsu, player);
+        myGame.setStartText("...you wake up in a familiar room, yet something is peculiar");
+        myGame.setVictoryText("Congratulations! You have successfully made it to the dining center");
+        myGame.start();
+    }
+
+}
